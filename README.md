@@ -1,0 +1,2 @@
+# StudShiny
+Pagina wer
