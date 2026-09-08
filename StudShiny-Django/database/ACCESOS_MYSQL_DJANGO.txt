@@ -1,0 +1,36 @@
+BASE MYSQL PARA DJANGO
+
+Archivo para importar:
+  python_app/database/studshiny_django_mysql.sql
+
+Base creada:
+  studshiny_django
+
+Accesos:
+  Administrador:
+    admin@studshiny.com
+    1234
+
+  Empleado:
+    empleado@studshiny.com
+    1234
+
+  Cliente:
+    cliente@studshiny.com
+    cliente123
+
+Como importar desde consola:
+  mysql -u root -p < python_app/database/studshiny_django_mysql.sql
+
+Como conectar Django a MySQL en PowerShell:
+  cd python_app
+  $env:DB_ENGINE="mysql"
+  $env:DB_NAME="studshiny_django"
+  $env:DB_USER="root"
+  $env:DB_PASSWORD="TU_CLAVE_MYSQL"
+  $env:DB_HOST="localhost"
+  $env:DB_PORT="3306"
+  python manage.py runserver
+
+Nota:
+  No abras db.sqlite3 en MySQL. SQLite y MySQL son motores diferentes.

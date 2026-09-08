@@ -1,0 +1,26 @@
+{% extends "core/base.html" %}
+{% block content %}
+<section class="admin-layout">
+    <aside class="sidebar">
+        <h2>Admin</h2>
+        <a href="{% url 'admin_dashboard' %}">Dashboard</a>
+        <a href="{% url 'producto_list' %}">Joyeria</a>
+        <a href="{% url 'procedimiento_list' %}">Procedimientos</a>
+        <a href="{% url 'cliente_list' %}">Clientes</a>
+        <a href="{% url 'promocion_list' %}">Promociones</a>
+        <a href="{% url 'factura_list' %}">Facturas</a>
+        <a href="{% url 'galeria_list' %}">Galeria</a>
+        <a href="{% url 'reportes' %}">Reportes</a>
+        <a href="{% url 'configuracion' %}">Configuracion</a>
+        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0;">
+        Cerrar sesion
+    </button>
+</form>
+    </aside>
+    <main class="content">
+        {% block admin_content %}{% endblock %}
+    </main>
+</section>
+{% endblock %}

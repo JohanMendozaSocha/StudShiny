@@ -1,0 +1,16 @@
+﻿BASE DE DATOS PYTHON / DJANGO FUNCIONAL
+
+Archivo que usa Django directamente:
+  python_app/db.sqlite3
+
+Copia de respaldo para transportar:
+  python_app/data/studshiny_django_funcional.sqlite3
+
+Accesos:
+  Administrador: admin@studshiny.com / 1234
+  Empleado: empleado@studshiny.com / 1234
+  Cliente: cliente@studshiny.com / cliente123
+
+Para reconstruir la base si se borra:
+  python manage.py migrate
+  python manage.py seed

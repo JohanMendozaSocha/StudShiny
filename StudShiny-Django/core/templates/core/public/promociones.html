@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+{% block title %}StudShiny | Promociones{% endblock %}
+{% block content %}
+<section class="section">
+    <h1>Promociones piercing</h1>
+    <p class="lead">Planes para perforaciones basicas y paquetes del estudio.</p>
+    <div class="grid">
+        {% for promocion in promociones %}
+            <article class="card" style="background:#b38971;color:white">
+                <h2>{{ promocion.nombre }}</h2>
+                <p>{{ promocion.descripcion }}</p>
+                <strong>${{ promocion.precio|floatformat:0 }}</strong>
+                <a class="button" href="{% url 'contacto' %}">Escoger</a>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

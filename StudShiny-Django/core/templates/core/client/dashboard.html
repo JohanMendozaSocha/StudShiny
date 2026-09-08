@@ -1,0 +1,46 @@
+{% extends "core/base.html" %}
+{% block title %}StudShiny | Panel Cliente{% endblock %}
+{% block content %}
+<section class="section">
+    <h1>Panel del cliente</h1>
+    <p class="lead">Hola, {{ cliente.nombre_completo }}</p>
+    <div class="grid">
+        <article class="card">
+            <h2>Mi perfil</h2>
+            <p><strong>Documento:</strong> {{ cliente.numero_documento }}</p>
+            <p><strong>Telefono:</strong> {{ cliente.telefono }}</p>
+            <p><strong>Alergias:</strong> {{ cliente.alergias_patologias|default:"Sin registro" }}</p>
+            <a class="button" href="{% url 'cliente_agendar' %}">Agendar cita</a>
+        </article>
+        <article class="card">
+            <h2>Cuidados recomendados</h2>
+            <p>{{ configuracion.mensaje_cuidados }}</p>
+        </article>
+    </div>
+    <h2>Historial de procedimientos</h2>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>Fecha</th><th>Perforacion</th><th>Estado</th><th>Cuidados</th></tr></thead>
+            <tbody>
+                {% for p in procedimientos %}
+                    <tr><td>{{ p.fecha_cita|date:"d/m/Y H:i" }}</td><td>{{ p.tipo_perforacion }}</td><td>{{ p.estado }}</td><td>{{ p.notas_cuidados }}</td></tr>
+                {% empty %}
+                    <tr><td colspan="4">Sin procedimientos.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <h2>Facturas</h2>
+    <div class="grid">
+        {% for factura in facturas %}
+            <article class="card">
+                <h3>Factura #{{ factura.id }}</h3>
+                <p>${{ factura.total|floatformat:0 }} - {{ factura.metodo_pago }}</p>
+                <a class="button light" href="{% url 'cliente_factura' factura.id %}">Ver factura</a>
+            </article>
+        {% empty %}
+            <p>Sin facturas registradas.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

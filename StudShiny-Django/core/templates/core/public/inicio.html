@@ -1,0 +1,46 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}StudShiny | Inicio{% endblock %}
+{% block content %}
+<header class="hero">
+    <section>
+       
+        <h1>¡Hola y bienvenidx a STREET PIERCING!</h1>
+        <p class="lead">Somos un estudio pensado para cuidar de ti mientras potencias tu estilo con perforaciones seguras y limpias.
+
+Aqui cada detalle cuenta, porque tu binestar y comodidad son lo mas importante.</p>
+        <div class="actions">
+            <a class="button" href="{% url 'registro' %}">Registrarse</a>
+            <a class="button secondary" href="{% url 'catalogo' %}">Ver catalogo</a>
+        </div>
+    </section>
+    <img class="hero-img" src="{% static 'core/images/home-collage.jpeg' %}" alt="Trabajos StudShiny">
+</header>
+<section class="section">
+    <p class="eyebrow">Catalogo</p>
+    <h2>Joyeria destacada</h2>
+    <div class="grid">
+        {% for producto in productos %}
+            <article class="card">
+                {% if producto.imagen %}<img class="product-img" src="{% static producto.imagen %}" alt="{{ producto.nombre }}">{% endif %}
+                <h3>{{ producto.nombre }}</h3>
+                <p>{{ producto.material }} / {{ producto.calibre }}</p>
+                <strong class="price">${{ producto.precio|floatformat:0 }}</strong>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+<section class="section">
+    <p class="eyebrow">Promociones</p>
+    <h2>Planes piercing</h2>
+    <div class="grid">
+        {% for promo in promociones %}
+            <article class="card">
+                <h3>{{ promo.nombre }}</h3>
+                <p>{{ promo.descripcion }}</p>
+                <strong class="price">${{ promo.precio|floatformat:0 }}</strong>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

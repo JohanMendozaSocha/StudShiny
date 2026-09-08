@@ -1,0 +1,15 @@
+{% extends "core/base.html" %}
+{% block title %}StudShiny | Login{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="panel" style="max-width:480px;margin:auto">
+        <h1>Ingresar</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="button">Entrar</button>
+        </form>
+        <p class="lead">Admin: admin@studshiny.com / 1234</p>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "core/admin/base_admin.html" %}
+{% block admin_content %}
+<div class="actions"><h1>Galeria</h1><a class="button" href="{% url 'galeria_create' %}">Nuevo trabajo</a></div>
+<div class="table-wrap"><table><thead><tr><th>Titulo</th><th>Imagen</th><th>Visible</th><th></th></tr></thead><tbody>
+{% for g in galeria %}<tr><td>{{ g.titulo }}</td><td>{{ g.imagen }}</td><td>{% if g.visible %}Si{% else %}No{% endif %}</td><td class="actions"><a class="button light" href="{% url 'galeria_update' g.id %}">Editar</a><a class="button danger" href="{% url 'galeria_delete' g.id %}">Eliminar</a></td></tr>{% empty %}<tr><td colspan="4">Sin trabajos.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

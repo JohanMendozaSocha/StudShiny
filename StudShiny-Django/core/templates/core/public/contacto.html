@@ -1,0 +1,16 @@
+{% extends "core/base.html" %}
+{% block title %}StudShiny | Contacto{% endblock %}
+{% block content %}
+<section class="section split">
+    <div>
+        <h1>Contacto y cita</h1>
+        <p class="lead">{{ configuracion.direccion }} / {{ configuracion.telefono }}</p>
+        <p>{{ configuracion.horario }}</p>
+    </div>
+    <form class="panel" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button">Enviar solicitud</button>
+    </form>
+</section>
+{% endblock %}

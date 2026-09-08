@@ -1,0 +1,12 @@
+{% extends "core/admin/base_admin.html" %}
+{% block admin_content %}
+<h1>Reportes</h1>
+<div class="grid">
+    <article class="stat"><span>Ingresos pagados</span><strong>${{ ingresos|floatformat:0 }}</strong></article>
+    <article class="stat"><span>Productos en stock bajo</span><strong>{{ productos_stock_bajo|length }}</strong></article>
+</div>
+<section class="split" style="margin-top:24px">
+    <div class="card"><h2>Procedimientos por tipo</h2>{% for p in procedimientos_por_tipo %}<p>{{ p.tipo_perforacion }}: {{ p.total }}</p>{% empty %}<p>Sin datos.</p>{% endfor %}</div>
+    <div class="card"><h2>Mayor stock</h2>{% for p in productos_mayor_stock %}<p>{{ p.nombre }}: {{ p.stock }}</p>{% endfor %}</div>
+</section>
+{% endblock %}

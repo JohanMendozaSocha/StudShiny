@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}StudShiny{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'core/styles.css' %}">
+</head>
+<body>
+    <nav class="nav">
+        <a class="brand" href="{% url 'inicio' %}">StudShiny</a>
+        <div class="nav-links">
+            <a href="{% url 'catalogo' %}">Catalogo</a>
+            <a href="{% url 'promociones' %}">Promociones</a>
+            <a href="{% url 'beneficios' %}">Beneficios</a>
+            <a href="{% url 'contacto' %}">Contacto</a>
+            {% if user.is_authenticated and user.is_staff %}
+                <a class="button light" href="{% url 'admin_dashboard' %}">Panel admin</a>
+            {% elif user.is_authenticated %}
+                <a class="button light" href="{% url 'cliente_dashboard' %}">Mi panel</a>
+                <form class="logout-form" action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="button danger" type="submit">Cerrar sesión</button>
+                </form>
+            {% else %}
+                <a class="button secondary" href="{% url 'registro' %}">Registrarse</a>
+                <a class="button" href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+    {% if messages %}
+        <section class="section" style="padding-bottom:0">
+            <ul class="messages">
+                {% for message in messages %}<li>{{ message }}</li>{% endfor %}
+            </ul>
+        </section>
+    {% endif %}
+    {% block content %}{% endblock %}
+    <footer class="footer">
+        <strong>StudShiny</strong>
+        <p>Sistema para gestion de joyeria corporal, citas, inventario, clientes y facturacion.</p>
+    </footer>
+</body>
+</html>

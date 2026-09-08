@@ -1,0 +1,7 @@
+{% extends "core/admin/base_admin.html" %}
+{% block admin_content %}
+<div class="actions"><h1>Promociones</h1><a class="button" href="{% url 'promocion_create' %}">Nueva promocion</a></div>
+<div class="table-wrap"><table><thead><tr><th>Nombre</th><th>Precio</th><th>Activa</th><th></th></tr></thead><tbody>
+{% for p in promociones %}<tr><td>{{ p.nombre }}</td><td>${{ p.precio|floatformat:0 }}</td><td>{% if p.activa %}Si{% else %}No{% endif %}</td><td class="actions"><a class="button light" href="{% url 'promocion_update' p.id %}">Editar</a><a class="button danger" href="{% url 'promocion_delete' p.id %}">Eliminar</a></td></tr>{% empty %}<tr><td colspan="4">Sin promociones.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

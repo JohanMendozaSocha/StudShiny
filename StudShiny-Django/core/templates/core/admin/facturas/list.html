@@ -1,0 +1,7 @@
+{% extends "core/admin/base_admin.html" %}
+{% block admin_content %}
+<div class="actions"><h1>Facturas</h1><a class="button" href="{% url 'factura_create' %}">Nueva factura</a></div>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>Cliente</th><th>Total</th><th>Metodo</th><th>Pagada</th><th></th></tr></thead><tbody>
+{% for f in facturas %}<tr><td>{{ f.id }}</td><td>{{ f.cliente }}</td><td>${{ f.total|floatformat:0 }}</td><td>{{ f.metodo_pago }}</td><td>{% if f.pagada %}Si{% else %}No{% endif %}</td><td class="actions"><a class="button light" href="{% url 'factura_update' f.id %}">Editar</a><a class="button danger" href="{% url 'factura_delete' f.id %}">Eliminar</a></td></tr>{% empty %}<tr><td colspan="6">Sin facturas.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

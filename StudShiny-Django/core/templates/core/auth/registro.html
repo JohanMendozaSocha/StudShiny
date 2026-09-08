@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% block title %}StudShiny | Registro{% endblock %}
+{% block content %}
+<section class="section">
+    <h1>Registro de cliente</h1>
+    <form class="panel" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button">Registrarse</button>
+    </form>
+</section>
+{% endblock %}

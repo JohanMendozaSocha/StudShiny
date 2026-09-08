@@ -1,0 +1,7 @@
+{% extends "core/admin/base_admin.html" %}
+{% block admin_content %}
+<div class="actions"><h1>Procedimientos</h1><a class="button" href="{% url 'procedimiento_create' %}">Nuevo procedimiento</a></div>
+<div class="table-wrap"><table><thead><tr><th>Cliente</th><th>Tipo</th><th>Fecha</th><th>Estado</th><th>Pago</th><th></th></tr></thead><tbody>
+{% for p in procedimientos %}<tr><td>{{ p.nombre_cliente }}</td><td>{{ p.tipo_perforacion }}</td><td>{{ p.fecha_cita|date:"d/m/Y H:i" }}</td><td>{{ p.estado }}</td><td>{% if p.estado_pago %}Si{% else %}No{% endif %}</td><td class="actions"><a class="button light" href="{% url 'procedimiento_update' p.id %}">Editar</a><a class="button danger" href="{% url 'procedimiento_delete' p.id %}">Eliminar</a></td></tr>{% empty %}<tr><td colspan="6">Sin procedimientos.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

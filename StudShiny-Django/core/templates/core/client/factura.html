@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}
+{% block title %}StudShiny | Factura{% endblock %}
+{% block content %}
+<section class="section">
+    <article class="panel">
+        <h1>Factura #{{ factura.id }}</h1>
+        <p><strong>Cliente:</strong> {{ cliente.nombre_completo }}</p>
+        <p><strong>Total:</strong> ${{ factura.total|floatformat:0 }}</p>
+        <p><strong>Metodo:</strong> {{ factura.metodo_pago }}</p>
+        <p><strong>Estado:</strong> {% if factura.pagada %}Pagada{% else %}Pendiente{% endif %}</p>
+        <button onclick="window.print()">Imprimir</button>
+    </article>
+</section>
+{% endblock %}

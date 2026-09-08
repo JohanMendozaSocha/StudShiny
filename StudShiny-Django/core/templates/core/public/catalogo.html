@@ -1,0 +1,42 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}StudShiny | Catalogo{% endblock %}
+{% block content %}
+<section class="section">
+    <h1>Catalogo de joyeria</h1>
+    <form class="panel" method="get">
+        <div class="grid">
+            <input name="nombre" placeholder="Buscar por nombre" value="{{ request.GET.nombre }}">
+            <input name="categoria" placeholder="Categoria" value="{{ request.GET.categoria }}">
+            <input name="material" placeholder="Material" value="{{ request.GET.material }}">
+            <input name="color" placeholder="Color" value="{{ request.GET.color }}">
+            <input name="calibre" placeholder="Calibre" value="{{ request.GET.calibre }}">
+            <input type="number" name="precio_min" placeholder="Precio minimo" value="{{ request.GET.precio_min }}">
+            <input type="number" name="precio_max" placeholder="Precio maximo" value="{{ request.GET.precio_max }}">
+            <select name="orden">
+                <option value="">Ordenar</option>
+                <option value="precio_asc">Menor precio</option>
+                <option value="precio_desc">Mayor precio</option>
+            </select>
+        </div>
+        <button class="button" style="margin-top:14px">Filtrar</button>
+    </form>
+    <div class="grid" style="margin-top:24px">
+        {% for producto in productos %}
+            <article class="card">
+                {% if producto.imagen %}<img class="product-img" src="{% static producto.imagen %}" alt="{{ producto.nombre }}">{% endif %}
+                <h2>{{ producto.nombre }}</h2>
+                <p>{{ producto.categoria }} / {{ producto.material }} / {{ producto.color }}</p>
+                <p>{{ producto.medida }} - {{ producto.calibre }}</p>
+                <p>{{ producto.descripcion }}</p>
+                <div class="actions">
+                    <strong class="price">${{ producto.precio|floatformat:0 }}</strong>
+                    <span class="badge">{{ producto.get_estado_display }}</span>
+                </div>
+            </article>
+        {% empty %}
+            <p>No hay joyas con esos filtros.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

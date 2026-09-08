@@ -1,0 +1,9 @@
+{% extends "core/admin/base_admin.html" %}
+{% block admin_content %}
+<h1>Configuracion</h1>
+<form class="panel" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="button">Guardar configuracion</button>
+</form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% block title %}StudShiny | Agendar{% endblock %}
+{% block content %}
+<section class="section">
+    <h1>Agendar cita</h1>
+    <form class="panel" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button">Solicitar cita</button>
+    </form>
+</section>
+{% endblock %}

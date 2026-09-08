@@ -1,0 +1,11 @@
+{% extends "core/admin/base_admin.html" %}
+{% block title %}StudShiny | Eliminar{% endblock %}
+{% block admin_content %}
+<h1>Confirmar eliminacion</h1>
+<form class="panel" method="post">
+    {% csrf_token %}
+    <p>Seguro que deseas eliminar: <strong>{{ object }}</strong>?</p>
+    <button class="button danger">Eliminar</button>
+    <a class="button light" href="{{ request.META.HTTP_REFERER|default:'/' }}">Cancelar</a>
+</form>
+{% endblock %}

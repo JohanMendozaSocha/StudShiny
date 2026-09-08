@@ -1,0 +1,13 @@
+{% extends "core/admin/base_admin.html" %}
+{% block title %}StudShiny | Formulario{% endblock %}
+{% block admin_content %}
+<h1>Formulario</h1>
+<form class="panel" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="actions">
+        <button class="button">Guardar</button>
+        <a class="button light" href="{{ request.META.HTTP_REFERER|default:'/' }}">Volver</a>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "core/admin/base_admin.html" %}
+{% block title %}StudShiny | Admin{% endblock %}
+{% block admin_content %}
+<h1>Dashboard administrativo</h1>
+<p class="lead">Informacion dinamica desde la base de datos de Django.</p>
+<div class="grid">
+    <article class="stat"><span>Productos</span><strong>{{ total_productos }}</strong></article>
+    <article class="stat"><span>Procedimientos</span><strong>{{ total_procedimientos }}</strong></article>
+    <article class="stat"><span>Clientes</span><strong>{{ total_usuarios }}</strong></article>
+    <article class="stat"><span>Facturas</span><strong>{{ total_facturas }}</strong></article>
+    <article class="stat"><span>Ingresos</span><strong>${{ ingresos|floatformat:0 }}</strong></article>
+    <article class="stat"><span>Stock bajo</span><strong>{{ stock_bajo }}</strong></article>
+</div>
+<section class="split" style="margin-top:24px">
+    <div class="card">
+        <h2>Procedimientos recientes</h2>
+        {% for p in procedimientos_recientes %}
+            <p><strong>{{ p.nombre_cliente }}</strong> - {{ p.tipo_perforacion }} - {{ p.fecha_cita|date:"d/m/Y H:i" }}</p>
+        {% empty %}<p>Sin procedimientos.</p>{% endfor %}
+    </div>
+    <div class="card">
+        <h2>Alertas de inventario</h2>
+        {% for p in productos_stock_bajo %}
+            <p><strong>{{ p.nombre }}</strong> Stock {{ p.stock }} / minimo {{ p.stock_minimo }}</p>
+        {% empty %}<p>Sin alertas.</p>{% endfor %}
+    </div>
+</section>
+{% endblock %}
